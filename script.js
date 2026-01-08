@@ -51,7 +51,7 @@ function Webcam(deviceId, s, callback) {
 
 // await loadScript("https://unpkg.com/ml5@1.0.1/dist/ml5.min.js")
 
-imageModelURL = "https://teachablemachine.withgoogle.com/models/crPRkyX9w/";
+imageModelURL = "https://teachablemachine.withgoogle.com/models/biTZ2ULWG/";
 
 label=0
 ml5.setBackend('webgl');
