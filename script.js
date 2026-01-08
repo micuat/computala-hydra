@@ -1,5 +1,5 @@
 var hydra = new Hydra({
-  detectAudio: false, width: 1280, height: 720
+  detectAudio: false, width: 1280/2, height: 720/2
 })
 
 s0.initCam()
