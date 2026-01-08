@@ -1,4 +1,6 @@
+const canvas = document.querySelector("canvas");
 var hydra = new Hydra({
+  canvas,
   detectAudio: false,
   width: window.innerWidth,
   height: window.innerHeight
@@ -7,47 +9,47 @@ var hydra = new Hydra({
 // setResolution(1920,1080)
 
 // https://github.com/hydra-synth/hydra-synth/blob/main/src/lib/webcam.js
-function Webcam(deviceId, s, callback) {
-  return navigator.mediaDevices.enumerateDevices()
-    .then(devices => devices.filter(devices => devices.kind === 'videoinput'))
-    .then(cameras => {
-      let constraints = { audio: false, video: {
-        width: { ideal: 1920 },
-        height: { ideal: 1080 }
-      }}
-      if (cameras[deviceId]) {
-        constraints['video'] = {
-          deviceId: { ideal: cameras[deviceId].deviceId }
-        }
-      }
-    //  console.log(cameras)
-      return window.navigator.mediaDevices.getUserMedia(constraints)
-    })
-    .then(stream => {
-      const videoEl = document.createElement('video')
-      videoEl.srcObject = stream
-      videoEl.autoplay = true
-      videoEl.muted = true
-      videoEl.playsInline = true
-      videoEl.onloadedmetadata = () => {
-        s.init({ src: videoEl })
-        callback();
-      }
+// function Webcam(deviceId, s, callback) {
+//   return navigator.mediaDevices.enumerateDevices()
+//     .then(devices => devices.filter(devices => devices.kind === 'videoinput'))
+//     .then(cameras => {
+//       let constraints = { audio: false, video: {
+//         width: { ideal: 1920 },
+//         height: { ideal: 1080 }
+//       }}
+//       if (cameras[deviceId]) {
+//         constraints['video'] = {
+//           deviceId: { ideal: cameras[deviceId].deviceId }
+//         }
+//       }
+//     //  console.log(cameras)
+//       return window.navigator.mediaDevices.getUserMedia(constraints)
+//     })
+//     .then(stream => {
+//       const videoEl = document.createElement('video')
+//       videoEl.srcObject = stream
+//       videoEl.autoplay = true
+//       videoEl.muted = true
+//       videoEl.playsInline = true
+//       videoEl.onloadedmetadata = () => {
+//         s.init({ src: videoEl })
+//         callback();
+//       }
 
-      // const video = document.createElement('video')
-      // video.setAttribute('autoplay', '')
-      // video.setAttribute('muted', '')
-      // video.setAttribute('playsinline', '')
-      // //  video.src = window.URL.createObjectURL(stream)
-      // video.srcObject = stream
-      // return new Promise((resolve, reject) => {
-      //   video.addEventListener('loadedmetadata', () => {
-      //     video.play().then(() => resolve({video: video}))
-      //   })
-      // })
-    })
-    .catch(console.log.bind(console))
-}
+//       // const video = document.createElement('video')
+//       // video.setAttribute('autoplay', '')
+//       // video.setAttribute('muted', '')
+//       // video.setAttribute('playsinline', '')
+//       // //  video.src = window.URL.createObjectURL(stream)
+//       // video.srcObject = stream
+//       // return new Promise((resolve, reject) => {
+//       //   video.addEventListener('loadedmetadata', () => {
+//       //     video.play().then(() => resolve({video: video}))
+//       //   })
+//       // })
+//     })
+//     .catch(console.log.bind(console))
+// }
 
 // await loadScript("https://unpkg.com/ml5@1.0.1/dist/ml5.min.js")
 
@@ -58,14 +60,14 @@ ml5.setBackend('webgl');
 classifier = ml5.imageClassifier(imageModelURL + "model.json");
 
 //camera for the questions
-// s0.initCam()
+s0.initCam()
 //camera for the public
-// s1.initCam(1)
-src(s0).out()
+s1.initCam(1)
+// src(s0).out()
 
-Webcam(0, s0, () => {
-  Webcam(1, s1, () => {
-classifier.classifyStart(s0.src, res=>{
+function start() {
+  document.querySelector("button").style.zIndex = -1;
+  classifier.classifyStart(s0.src, res=>{
   // console.log(res[0].label)
   switch (res[0].label) {
     case "Class A":
@@ -147,5 +149,8 @@ src(s1)
       break;
 }
 })
-  })
-})
+}
+// Webcam(0, s0, () => {
+//   Webcam(1, s1, () => {
+//   })
+// })
