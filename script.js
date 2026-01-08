@@ -2,8 +2,8 @@ const canvas = document.querySelector("canvas");
 var hydra = new Hydra({
   canvas,
   detectAudio: false,
-  width: 1280,
-  height: 720
+  width: window.innerWidth,
+  height: window.innerHeight
 })
 
 // setResolution(1920,1080)
