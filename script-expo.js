@@ -110,3 +110,9 @@ src(s1)
 }
 })
 }
+
+setTimeout(start, 5 * 1000);
+
+setTimeout(() => {
+  window.location.href = "/expo.html";
+}, 60 * 10 * 1000);
