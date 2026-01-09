@@ -26,6 +26,7 @@ function start() {
   if (lastLabel == res[0].label) {
     return;
   }
+  lastLabel = res[0].label;
   switch (res[0].label) {
     case "Class A":
 // How should we talk to robots/AI? 
