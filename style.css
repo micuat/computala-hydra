@@ -18,3 +18,23 @@ button {
   font-size: 2rem;
   z-index: 10;
 }
+
+iframe {
+  width: 100%;
+  min-height: 400px;
+  border: none;
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+a:visited {
+  font-weight: bold;
+  color: black;
+}
+
+.p-margin {
+  margin: 3rem 0;
+}

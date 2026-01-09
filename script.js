@@ -66,7 +66,7 @@ s1.initCam(1)
 // src(s0).out()
 
 function start() {
-  document.querySelector("button").style.display = "none"
+  document.querySelector(".info").style.display = "none"
   classifier.classifyStart(s0.src, res=>{
   // console.log(res[0].label)
   switch (res[0].label) {
