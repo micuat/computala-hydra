@@ -6,6 +6,8 @@ var hydra = new Hydra({
   height: 1080
 })
 
+setResolution(1920, 1080);
+
 imageModelURL = "https://teachablemachine.withgoogle.com/models/biTZ2ULWG/";
 
 label=0
